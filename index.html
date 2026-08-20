@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>project 3E - Universal Execution Portal</title>
+    <style>
+        /* Base Global Matrix - Pitch Black Symmetrical High Contrast Theme */
+        * { box-sizing: border-box; margin: 0; padding: 0; user-select: none; }
+        body { background-color: #000000; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 15px; overflow-x: hidden; }
+        
+        /* Top Navigation Header Tabs */
+        header { text-align: center; margin-top: 10px; z-index: 10; }
+        h1 { font-size: 2.2rem; letter-spacing: 3px; color: #f1c40f; font-weight: 300; }
+        .initiator { font-size: 0.8rem; color: #888; letter-spacing: 1px; margin-top: 3px; text-transform: uppercase; }
+
+        .nav-tabs { display: flex; width: 100%; max-width: 480px; gap: 8px; margin-top: 15px; z-index: 30; }
+        .tab-btn { flex: 1; background: #111; border: 1px solid #333; color: #aaa; padding: 12px 6px; font-size: 0.75rem; font-weight: bold; text-transform: uppercase; letter-spacing: 0.5px; border-radius: 6px; cursor: pointer; }
+        .tab-btn.active, .tab-btn:hover { color: #f1c40f; border-color: #f1c40f; background: #0a0a0a; }
+
+        /* Central Interactive Logo Branding Frame */
+        .portal-container { display: flex; align-items: center; justify-content: center; width: 100%; max-width: 480px; height: 240px; margin: 15px 0; position: relative; }
+        .logo-emblem { display: flex; align-items: center; justify-content: center; gap: 20px; position: relative; z-index: 5; }
+        .wing-33 { font-size: 5.5rem; font-weight: bold; color: #f39c12; text-shadow: 0 0 20px rgba(243, 156, 18, 0.5); cursor: pointer; padding: 10px; }
+        .wing-ee { font-size: 5.5rem; font-weight: bold; color: #e74c3c; text-shadow: 0 0 20px rgba(231, 76, 60, 0.5); cursor: pointer; padding: 10px; }
+        .center-void-vortex { width: 95px; height: 90px; border-radius: 50%; background: radial-gradient(circle, #000000 35%, #1a0033 65%, #4a00e0 100%); box-shadow: 0 0 25px #4a00e0, inset 0 0 15px #000000; cursor: pointer; }
+
+        /* Dynamic Interaction Sliding Content Panels */
+        .display-panel { width: 100%; max-width: 480px; background: #0a0a0a; border: 1px solid #222; border-radius: 10px; padding: 15px; margin: 10px 0; min-height: 180px; display: none; }
+        .display-panel.active-panel { display: block; }
+        .panel-header { font-size: 1.1rem; color: #f1c40f; margin-bottom: 12px; border-bottom: 1px solid #222; padding-bottom: 6px; font-weight: 400; text-transform: uppercase; }
+
+        /* Operational Intake Form Elements */
+        .input-group { margin-bottom: 10px; }
+        label { display: block; font-size: 0.7rem; color: #888; margin-bottom: 3px; text-transform: uppercase; }
+        select, input[type="text"] { width: 100%; background: #111; border: 1px solid #444; padding: 8px; color: #fff; border-radius: 6px; font-size: 0.85rem; }
+        .submit-btn { width: 100%; background: #f1c40f; color: #000; border: none; padding: 10px; font-size: 0.9rem; font-weight: bold; border-radius: 6px; cursor: pointer; text-transform: uppercase; margin-top: 5px; }
+
+        /* Lists, Cards, and Charts Configuration */
+        .list-container { display: flex; flex-direction: column; gap: 6px; }
+        .list-item-btn { width: 100%; background: #111; border: 1px solid #222; padding: 8px 12px; text-align: left; color: #ccc; font-size: 0.8rem; border-radius: 5px; cursor: pointer; display: flex; justify-content: space-between; }
+        .list-item-btn:hover { border-color: #f1c40f; color: #fff; }
+        .data-card { background: #111; border-left: 3px solid #f1c40f; padding: 10px; border-radius: 4px; font-size: 0.82rem; line-height: 1.4; color: #ddd; margin-top: 8px; }
+        .flow-node { background: #111; border: 1px solid #222; padding: 10px; border-radius: 6px; margin: 4px 0; font-size: 0.8rem; border-left: 4px solid #f1c40f; text-align: center; }
+        .flow-node p { color: #999; font-size: 0.75rem; margin-top: 2px; }
+        .flow-arrow { text-align: center; color: #333; font-size: 1rem; margin: 1px 0; }
+        .facility-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 10px; }
+        .facility-card { background: #0d0d0d; border: 1px solid #222; border-radius: 8px; padding: 12px; }
+        .facility-card h3 { color: #f1c40f; font-size: 0.95rem; margin-bottom: 4px; }
+        .facility-card p { color: #aaa; font-size: 0.78rem; line-height: 1.4; }
+
+        footer { font-size: 0.6rem; color: #444; text-align: center; max-width: 480px; line-height: 1.4; margin-top: 15px; border-top: 1px solid #111; padding-top: 8px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>project 3E</h1>
+        <div class="initiator">Initiator: viveesh JP</div>
+    </header>
+
+    <div class="nav-tabs">
+        <button class="tab-btn" id="tabChart">🌀 Flow Chart</button>
+        <button class="tab-btn" id="tabLibrary">🏛️ 33 Library</button>
+        <button class="tab-btn" id="tabGuide">💎 Guide</button>
+    </div>
+
+    <!-- Original Interlocking Branding Layout -->
+    <div class="portal-container">
+        <div class="logo-emblem">
+            <div class="wing-33" id="giverBtn">33</div>
+            <div class="center-void-vortex" id="vortexCore"></div>
+            <div class="wing-ee" id="receiverBtn">EE</div>
+        </div>
+    </div>
+
+    <!-- 1. Giver Panel Form -->
+    <div class="display-panel" id="panelGiver">
+        <div class="panel-header" style="color: #f39c12;">Giver Matrix (+33 Hz Track)</div>
+        <div class="input-group">
+            <label>🌌 Origin Dimensional Plane:</label>
+            <select id="giverPlane">
+                <option value="Stage 1: Absolute Source (∞)">Stage 1: Absolute Source (∞)</option>
+                <option value="Stage 9: Spirit Realms (12D-10D)">Stage 9: Spirit Realms (12D-10D)</option>
+                <option value="Stage 11: Physical Realms (3D-1D)" selected>Stage 11: Physical Realms (3D-1D)</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>📦 WHAT is the Resource Asset Token?</label>
+            <input type="text" id="giverWhat" placeholder="e.g., $100 Cash / 3 Hrs Touch Care">
+        </div>
+        <div class="input-group">
+            <label>🔥 WHY is this connection initialized?</label>
+            <input type="text" id="giverWhy" placeholder="Declare your true intention">
+        </div>
+        <button class="submit-btn" id="submitGiver">Execute Giver Vector</button>
+    </div>
+
+    <!-- 2. Receiver Panel Form -->
+    <div class="display-panel" id="panelReceiver">
+        <div class="panel-header" style="color: #e74c3c;">Receiver Matrix (-33 Hz Track)</div>
+        <div class="input-group">
+            <label>🌌 Target Destination Plane:</label>
+            <select id="receiverPlane">
+                <option value="Stage 2: Primordial Void (0)">Stage 2: Primordial Void (0)</option>
+                <option value="Stage 10: Energy Realms (9D-4D)">Stage 10: Energy Realms (9D-4D)</option>
+                <option value="Stage 11: Physical Realms (3D-1D)" selected>Stage 11: Physical Realms (3D-1D)</option>
+            </select>
+        </div>
+        <div class="input-group">
+            <label>📦 WHAT is your absolute material deficit?</label>
+            <input type="text" id="receiverWhat" placeholder="Define the necessity required to heal">
+        </div>
+        <div class="input-group">
+            <label>🔥 WHY do you draw this from the vortex?</label>
+            <input type="text" id="receiverWhy" placeholder="Declare your true unvarnished need">
+        </div>
+        <button class="submit-btn" id="submitReceiver">Execute Receiver Vector</button>
+    </div>
+
+    <!-- 3. Cosmic Flow Panel View -->
+    <div class="display-panel" id="panelChart">
+        <div class="panel-header">Cosmic Hierarchy Execution State</div>
+        <div id="liveStatusBox"></div>
+        <div class="flow-container">
+            <div class="flow-node" style="border-color: #9b59b6;"><strong>1. THE ABSOLUTE SOURCE / GODHEAD (∞)</strong><p>Pure Unmanifest Consciousness. Timeless, boundless, absolute peace.</p></div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-node" style="border-color: #8e44ad;"><strong>2. THE PRIMORDIAL VOID (Value: 0)</strong><p>The primordial buffer zone. Total sensory deprivation, perfect rest.</p></div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-node" style="border-color: #34495e;"><strong>3. THE OMNIVERSE CONTAINER</strong><p>Every single possible reality combined.</p></div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-node" style="border-color: #f1c40f;"><strong>4. ZERO-POINT FREQUENCY WORLD (0 Hz)</strong><p>The quantum vacuum grid line. Absolute neutrality, zero resistance.</p></div>
+            <div class="flow-arrow">▼</div>
+            <div class="flow-node" style="border-color: #7f8c8d;"><strong>5. PHYSICAL REALMS (3D down to 1D)</strong><p>Solid matter, biology, linear time, and touch awareness.</p></div>
+        </div>
+    </div>
+
+    <!-- 4. 33 Library Panel View -->
+    <div class="display-panel" id="panelLibrary">
+        <div class="panel-header">33 Vertebral Encyclopedia</div>
+        <p style="font-size:0.75rem; color:#888; margin-bottom:10px;">Tap any vertebral joint node to read its characteristics:</p>
+        <div class="list-container" id="spineList"></div>
+        <div id="libraryDetailBox"></div>
+    </div>
+
+    <!-- 5. Guide Panel View -->
+    <div class="display-panel" id="panelGuide">
+        <div class="panel-header">Quality & Quantity Facilities Guide</div>
